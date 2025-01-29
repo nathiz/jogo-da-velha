@@ -6,15 +6,18 @@ mudarJogador('X');
 
 function escolherQuadrado(id) {
    
+    // Verifica se já tem um vencedor
     if (vencedor !== null) {
         return;
     }
 
+    // Verifica se o quadrado já foi escolhido
     var quadrado = document.getElementById(id);
     if (quadrado.innerHTML !== '-') {
         return;
     }
 
+    //  Define o jogador
     quadrado.innerHTML = jogador;
     quadrado.style.color = 'rgba(176, 52, 117)';
 
@@ -28,13 +31,15 @@ function escolherQuadrado(id) {
     checaVencedor();
 }
 
+//Funçao para mudar o jogador
 function mudarJogador(valor) {
     jogador = valor;
     jogadorSelecionado.innerHTML = jogador;
 }
 
-
+// Função para checar o vencedor
 function checaVencedor(){
+    // Obtém os elementos do tabuleiro pelos IDs (1 a 9)
     var quadrado1 = document.getElementById(1);
     var quadrado2 = document.getElementById(2);
     var quadrado3 = document.getElementById(3);
@@ -45,54 +50,61 @@ function checaVencedor(){
     var quadrado8 = document.getElementById(8);
     var quadrado9 = document.getElementById(9);
 
+    // Verifica se a primeira linha (quadrados 1, 2 e 3) tem um vencedor
     if (checaSequencia(quadrado1, quadrado2, quadrado3)) {
         mudaCorQuadrado(quadrado1, quadrado2, quadrado3);
         mudarVencedor(quadrado1);
         return;
     }
 
+    // Verifica se a segunda linha (quadrados 4, 5 e 6) tem um vencedor
     if (checaSequencia(quadrado4, quadrado5, quadrado6)) {
         mudaCorQuadrado(quadrado4, quadrado5, quadrado6);
         mudarVencedor(quadrado4);
         return;
     }
 
+    // Verifica se a terceira linha (quadrados 7, 8 e 9) tem um vencedor
     if (checaSequencia(quadrado7, quadrado8, quadrado9)) {
         mudaCorQuadrado(quadrado7, quadrado8, quadrado9);
         mudarVencedor(quadrado7);
         return;
     }
 
+    // Verifica se a primeira coluna (quadrados 1, 4 e 7) tem um vencedor
     if (checaSequencia(quadrado1, quadrado4, quadrado7)) {
         mudaCorQuadrado(quadrado1, quadrado4, quadrado7);
         mudarVencedor(quadrado1);
         return;
     }
 
+    // Verifica se a segunda coluna (quadrados 2, 5 e 8) tem um vencedor
     if (checaSequencia(quadrado2, quadrado5, quadrado8)) {
         mudaCorQuadrado(quadrado2, quadrado5, quadrado8);
         mudarVencedor(quadrado2);
         return;
     }
 
+    // Verifica se a terceira coluna (quadrados 3, 6 e 9) tem um vencedor
     if (checaSequencia(quadrado3, quadrado6, quadrado9)) {
         mudaCorQuadrado(quadrado3, quadrado6, quadrado9);
         mudarVencedor(quadrado3);
         return;
     }
 
+    // Verifica se a diagonal principal (quadrados 1, 5 e 9) tem um vencedor
     if (checaSequencia(quadrado1, quadrado5, quadrado9)) {
         mudaCorQuadrado(quadrado1, quadrado5, quadrado9);
         mudarVencedor(quadrado1);
         return;
     }
 
+    // Verifica se a diagonal secundária (quadrados 3, 5 e 7) tem um vencedor
     if (checaSequencia(quadrado3, quadrado5, quadrado7)) {
         mudaCorQuadrado(quadrado3, quadrado5, quadrado7);
         mudarVencedor(quadrado3);
     }
 
-     
     if (checaSequencia(quadrado1, quadrado2, quadrado3)) {
         mudaCorQuadrado(quadrado1, quadrado2, quadrado3);
         mudarVencedor(quadrado1);
@@ -101,7 +113,7 @@ function checaVencedor(){
     }
 } 
 
-
+//Função para mudar o vencedor
 function mudarVencedor(quadrado) {
     vencedor = quadrado.innerHTML;
     vencedorSelecionado.innerHTML = vencedor;
@@ -156,9 +168,7 @@ function solicitarNomeJogador(numeroJogador) {
     var nome = prompt("Por favor, insira o nome do Jogador " + numeroJogador);
     if (nome != null) {
         document.querySelector(".jogador" + numeroJogador + " p").textContent = nome;
-    }
-    
-    
+    }    
 }
 
 function solicitarPecaJogador(numeroJogador) {
